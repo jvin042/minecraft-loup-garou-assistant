@@ -1,46 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Net;
-using System.Net.Security;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Minecraft_Loup_Garou_Assistant
 {
     public partial class Form1 : Form
     {
-        static string version = "1.0";
-        static string titre = "Minecraft Loup Garou Assistant";
+        #region Variables
+        // Dossiers
         static string dossierBuildSpigot = "\\build-spigot\\";
+        static string dossierLoupGarou = "\\plugins\\LoupGarou\\";
         static string dossierPlugins = "\\plugins\\";
-        static string versionMinecraft = "1.15.1";
-        static string Spigot = "spigot-" + versionMinecraft + ".jar";
-        static string lienSpigot = "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar";
-        static string lienLoupGarou = "https://github.com/leomelki/LoupGarou/releases/download/1.0.1/LoupGarou-1.0.1.jar";
-        static string lienProtocolLib = "https://github.com/dmulloy2/ProtocolLib/releases/download/4.5.0/ProtocolLib.jar";
-        static string lienConfigMedieval = "https://raw.githubusercontent.com/jvin042/minecraft-loup-garou-assistant/master/ressources/maps/config-medieval.yml";
+
+        // Map Village
         static string lienConfigVillage = "https://raw.githubusercontent.com/jvin042/minecraft-loup-garou-assistant/master/ressources/maps/config-village.yml";
-        static string lienMapMedieval = "https://github.com/jvin042/minecraft-loup-garou-assistant/raw/master/ressources/maps/lg_medieval.zip";
         static string lienMapVillage = "https://github.com/jvin042/minecraft-loup-garou-assistant/raw/master/ressources/maps/lg_village.zip";
+
+        // Map Medieval
+        static string lienConfigMedieval = "https://raw.githubusercontent.com/jvin042/minecraft-loup-garou-assistant/master/ressources/maps/config-medieval.yml";
+        static string lienMapMedieval = "https://github.com/jvin042/minecraft-loup-garou-assistant/raw/master/ressources/maps/lg_medieval.zip";
+
+        // Plugin Loup Garou
+        static string versionLoupGarou;
+        static string lienLoupGarou = "https://github.com/jvin042/minecraft-loup-garou-assistant/raw/master/ressources/LoupGarou";
+
+        // Plugin ProtocolLib
+        static string versionProtocolLib;
+        static string lienProtocolLib = "https://github.com/jvin042/minecraft-loup-garou-assistant/raw/master/ressources/ProtocolLib";
+
+        // Spigot
+        static string versionMinecraft = "1.15.1";
+        static string spigot = "spigot-" + versionMinecraft + ".jar";
+        static string lienSpigot = "https://cdn.getbukkit.org/spigot/" + spigot;
+        static string lienSpigotBuild = "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar";
+
+        // Ressources
         static string lienIcone = "https://github.com/jvin042/minecraft-loup-garou-assistant/raw/master/ressources/server-icon.png";
         static string lienServerProperties = "https://github.com/jvin042/minecraft-loup-garou-assistant/raw/master/ressources/server.properties";
-        static string lienVersion = "https://github.com/jvin042/minecraft-loup-garou-assistant/raw/master/ressources/VERSION";
-        static bool world;
+        static string lienVersion = "https://github.com/jvin042/minecraft-loup-garou-assistant/raw/master/ressources/version";
 
+        // Autres
+        static bool spigotBuild;
+        static bool world;  
+        static string version = "1.0";
+        static string titre = "Minecraft Loup Garou Assistant";
+        #endregion
+
+        #region Form
         public Form1()
         {
             InitializeComponent();
             MAJ();
         }
+        #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonInstallationPC_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dossierServeur = new FolderBrowserDialog();
 
@@ -59,12 +76,17 @@ namespace Minecraft_Loup_Garou_Assistant
                     proc.StartInfo.CreateNoWindow = false;
                     proc.Start();
 
-                    Application.Exit();
+                    System.Windows.Forms.Application.Exit();
                 }
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonMajPC_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonInstallationServeur_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dossierServeur = new FolderBrowserDialog();
 
@@ -75,7 +97,7 @@ namespace Minecraft_Loup_Garou_Assistant
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonAPropos_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Minecraft Loup Garou Assistant by jvin042 (TR1NITY)\n Version " + version, titre, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -122,7 +144,7 @@ namespace Minecraft_Loup_Garou_Assistant
         public static void BuildSpigot(FolderBrowserDialog dossierServeur)
         {
             // Test si le fichier spigot existe
-            if (!File.Exists(dossierServeur.SelectedPath + "\\" + Spigot))
+            if (!File.Exists(dossierServeur.SelectedPath + "\\" + spigot))
             {
                 // Supprime le dossier de build existant si présent
                 if (Directory.Exists(dossierServeur.SelectedPath + dossierBuildSpigot))
@@ -148,13 +170,13 @@ namespace Minecraft_Loup_Garou_Assistant
                 proc.WaitForExit();
 
                 // Déplacement de la build de Spigot et suppresion du dossier de build
-                File.Move(dossierServeur.SelectedPath + dossierBuildSpigot + Spigot, dossierServeur.SelectedPath + "\\" + Spigot);
+                File.Move(dossierServeur.SelectedPath + dossierBuildSpigot + spigot, dossierServeur.SelectedPath + "\\" + spigot);
 
                 // Test si le fichier launch.bat est présent
                 if (!File.Exists(dossierServeur.SelectedPath + "\\launch.bat"))
                 {
                     // Création du fichier
-                    File.WriteAllText(dossierServeur.SelectedPath + "\\launch.bat", "echo off\ncls\ntitle Minecraft Loup Garou Assistant\njava -Xmx1G -jar " + Spigot + " nogui");
+                    File.WriteAllText(dossierServeur.SelectedPath + "\\launch.bat", "echo off\ncls\ntitle Minecraft Loup Garou Assistant\njava -Xmx1G -jar " + spigot + " nogui");
                 }
             }
         }
@@ -236,9 +258,9 @@ namespace Minecraft_Loup_Garou_Assistant
 
         public static void MAJ()
         {
-            if (File.Exists(Path.GetTempPath() + "VERSION")) File.Delete(Path.GetTempPath() + "VERSION");
-            download(lienVersion, Path.GetTempPath() + "VERSION");
-            using (StreamReader sr = new StreamReader(Path.GetTempPath() + "VERSION"))
+            if (File.Exists(Path.GetTempPath() + "version")) File.Delete(Path.GetTempPath() + "version");
+            download(lienVersion, Path.GetTempPath() + "version");
+            using (StreamReader sr = new StreamReader(Path.GetTempPath() + "version"))
             {
                if(version != sr.ReadLine())
                {
@@ -247,5 +269,7 @@ namespace Minecraft_Loup_Garou_Assistant
                }
             }
         }
+
+        
     }
 }
