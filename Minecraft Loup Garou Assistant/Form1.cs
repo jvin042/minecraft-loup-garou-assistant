@@ -50,7 +50,7 @@ namespace Minecraft_Loup_Garou_Assistant
         static bool maj = false;
         static bool spigotBuild;
         static bool world;
-        static string version = "1.0";
+        static string version = "1.1";
         static string titre = "Minecraft Loup Garou Assistant";
         #endregion
 
@@ -69,6 +69,7 @@ namespace Minecraft_Loup_Garou_Assistant
         #region Boutons
         private void buttonInstallationPC_Click(object sender, EventArgs e)
         {
+            maj = false;
             PC();
         }
 
@@ -80,6 +81,7 @@ namespace Minecraft_Loup_Garou_Assistant
 
         private void buttonInstallationServeur_Click(object sender, EventArgs e)
         {
+            maj = false;
             Serveur();
         }
 
@@ -116,6 +118,12 @@ namespace Minecraft_Loup_Garou_Assistant
 
             if (dossierServeur.ShowDialog() == DialogResult.OK)
             {
+                if (!maj)
+                {
+                    if (Directory.GetDirectories(dossierServeur.SelectedPath).Length == 0 && Directory.GetFiles(dossierServeur.SelectedPath).Length == 0) { }
+                    else { MessageBox.Show("Le répertoire d'installation doit être vide !", titre, MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; }
+                }
+
                 GenerationServeur(dossierServeur);
                 MessageBox.Show("Les fichiers du serveur sont OK ! Il ne reste plus que à les copier sur le serveur !", titre, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
