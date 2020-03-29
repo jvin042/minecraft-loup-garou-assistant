@@ -18,3 +18,7 @@ Application compatible que sur Windows !
 
 - Télécharger le fichier [ici](https://github.com/jvin042/minecraft-loup-garou-assistant/releases) et décompresser le.
 - Lancer le logiciel
+
+## Vidéo
+
+- [Présentation du logiciel Minecraft Loup Garou Assistant !](https://www.youtube.com/watch?v=Ru_DVwe-xSQ)
