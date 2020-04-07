@@ -1,8 +1,8 @@
 # Minecraft Loup Garou Assistant
 
-## Infos
+![Image description](ressources/Capture.JPG)
 
-Ce logiciel vous permet de préparer facilement l'installation du mode Loup Garou de Squeezie !
+Ce logiciel vous permet de préparer facilement l'installation du mode Loup Garou de Squeezie sur votre PC ou votre hébergeur !
 
 Application compatible que sur Windows !
 
@@ -16,7 +16,7 @@ Application compatible que sur Windows !
 
 ## Installation
 
-- Télécharger le fichier [ici](https://github.com/jvin042/minecraft-loup-garou-assistant/releases) et décompresser le.
+- Télécharger le fichier [ici](https://github.com/jvin042/minecraft-loup-garou-assistant/releases)
 - Lancer le logiciel
 
 ## Vidéo
