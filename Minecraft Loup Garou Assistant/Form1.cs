@@ -50,7 +50,7 @@ namespace Minecraft_Loup_Garou_Assistant
         static bool maj = false;
         static bool spigotBuild;
         static bool world;
-        static string version = "1.2";
+        static string version = "1.2.1";
         static string titre = "Minecraft Loup Garou Assistant";
         #endregion
 
@@ -251,7 +251,7 @@ namespace Minecraft_Loup_Garou_Assistant
                 if(maj)
                 {
                     // Test maj du fichier de config loup garou
-                    if (!File.Exists(dossierServeur.SelectedPath + "\\world\\village"))
+                    if (File.Exists(dossierServeur.SelectedPath + "\\world\\village"))
                     {
                         var selectedOption1 = MessageBox.Show("Il semblerait que vous ayez la map village ! Souhaitez-vous mettre à jour le fichier de config du loup garou pour les nouveaux rôles ?", titre, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (selectedOption1 == DialogResult.Yes) 
@@ -260,7 +260,7 @@ namespace Minecraft_Loup_Garou_Assistant
                             Download(lienConfigVillage, dossierServeur.SelectedPath + dossierLoupGarou + "config.yml"); 
                         }
                     }
-                    else if (!File.Exists(dossierServeur.SelectedPath + "\\world\\medieval"))
+                    else if (File.Exists(dossierServeur.SelectedPath + "\\world\\medieval"))
                     {
                         var selectedOption1 = MessageBox.Show("Il semblerait que vous ayez la map medieval ! Souhaitez-vous mettre à jour le fichier de config du loup garou pour les nouveaux rôles ?", titre, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (selectedOption1 == DialogResult.Yes)
@@ -271,7 +271,7 @@ namespace Minecraft_Loup_Garou_Assistant
                     }
                     else
                     {
-                        MessageBox.Show("Le logiciel n'a pas pus déterminé votre map actuelle ! Il faudra mettre à jour votre fichier de config Loup Garou à la main pour avoir les nouveaux rôles ou réinstaller votre serveur !", titre, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        MessageBox.Show("Le logiciel n'a pas pus déterminé votre map actuelle ! Il faudra mettre à jour votre fichier de config Loup Garou à la main pour avoir les nouveaux rôles ou réinstaller votre serveur !", titre, MessageBoxButtons.OK, MessageBoxIcon.Question);
                     }
                 }
             }
