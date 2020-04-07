@@ -50,7 +50,7 @@ namespace Minecraft_Loup_Garou_Assistant
         static bool maj = false;
         static bool spigotBuild;
         static bool world;
-        static string version = "1.1";
+        static string version = "1.2";
         static string titre = "Minecraft Loup Garou Assistant";
         #endregion
 
@@ -246,6 +246,35 @@ namespace Minecraft_Loup_Garou_Assistant
                     else if (selectedOption2 == DialogResult.No) { custom = true;  MessageBox.Show("Vous devez copier votre map dans le répertoire du serveur 'world'", titre, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
             }
+            else if (world)
+            {
+                if(maj)
+                {
+                    // Test maj du fichier de config loup garou
+                    if (!File.Exists(dossierServeur.SelectedPath + "\\world\\village"))
+                    {
+                        var selectedOption1 = MessageBox.Show("Il semblerait que vous ayez la map village ! Souhaitez-vous mettre à jour le fichier de config du loup garou pour les nouveaux rôles ?", titre, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (selectedOption1 == DialogResult.Yes) 
+                        {
+                            File.Delete(dossierServeur.SelectedPath + dossierLoupGarou + "config.yml");
+                            Download(lienConfigVillage, dossierServeur.SelectedPath + dossierLoupGarou + "config.yml"); 
+                        }
+                    }
+                    else if (!File.Exists(dossierServeur.SelectedPath + "\\world\\medieval"))
+                    {
+                        var selectedOption1 = MessageBox.Show("Il semblerait que vous ayez la map medieval ! Souhaitez-vous mettre à jour le fichier de config du loup garou pour les nouveaux rôles ?", titre, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (selectedOption1 == DialogResult.Yes)
+                        {
+                            File.Delete(dossierServeur.SelectedPath + dossierLoupGarou + "config.yml");
+                            Download(lienConfigMedieval, dossierServeur.SelectedPath + dossierLoupGarou + "config.yml");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Le logiciel n'a pas pus déterminé votre map actuelle ! Il faudra mettre à jour votre fichier de config Loup Garou à la main pour avoir les nouveaux rôles ou réinstaller votre serveur !", titre, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                }
+            }
         }
 
         public static void Spigot(FolderBrowserDialog dossierServeur)
@@ -321,7 +350,7 @@ namespace Minecraft_Loup_Garou_Assistant
         public static void mapVillage(FolderBrowserDialog dossierServeur)
         {
             // Suppresion du fichier de config si il exitste
-            if (File.Exists(dossierServeur.SelectedPath + dossierPlugins + "LoupGarou\\config.yml")) File.Delete(dossierServeur.SelectedPath + dossierPlugins + "LoupGarou\\config.yml");
+            if (File.Exists(dossierServeur.SelectedPath + dossierPlugins + "LoupGarou\\config.yml")) File.Delete(dossierServeur.SelectedPath + dossierLoupGarou + "config.yml");
 
             // Téléchargement de la map et du fichier de config
             Download(lienMapVillage, dossierServeur.SelectedPath + "\\lg_village.zip");
@@ -337,7 +366,7 @@ namespace Minecraft_Loup_Garou_Assistant
         public static void mapMedieval(FolderBrowserDialog dossierServeur)
         {
             // Suppresion du fichier de config si il exitste
-            if (File.Exists(dossierServeur.SelectedPath + dossierPlugins + "LoupGarou\\config.yml")) File.Delete(dossierServeur.SelectedPath + dossierPlugins + "LoupGarou\\config.yml");
+            if (File.Exists(dossierServeur.SelectedPath + dossierPlugins + "LoupGarou\\config.yml")) File.Delete(dossierServeur.SelectedPath + dossierLoupGarou + "config.yml");
 
             // Téléchargement de la map et du fichier de config
             Download(lienMapMedieval, dossierServeur.SelectedPath + "\\lg_medieval.zip");

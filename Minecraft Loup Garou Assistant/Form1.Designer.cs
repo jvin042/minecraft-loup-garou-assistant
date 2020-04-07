@@ -69,7 +69,7 @@
             this.buttonInstallationServeur.Name = "buttonInstallationServeur";
             this.buttonInstallationServeur.Size = new System.Drawing.Size(457, 40);
             this.buttonInstallationServeur.TabIndex = 2;
-            this.buttonInstallationServeur.Text = "INSTALLATION SUR VOTRE SERVEUR";
+            this.buttonInstallationServeur.Text = "INSTALLATION SUR VOTRE HEBERGEUR";
             this.buttonInstallationServeur.UseVisualStyleBackColor = true;
             this.buttonInstallationServeur.Click += new System.EventHandler(this.buttonInstallationServeur_Click);
             // 
