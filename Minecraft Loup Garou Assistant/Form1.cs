@@ -396,6 +396,7 @@ namespace Minecraft_Loup_Garou_Assistant
             {
                 if (version != sr.ReadLine())
                 {
+                    File.Delete(Path.GetTempPath() + "version");
                     MessageBox.Show("Une nouvelle version de Assistant est disponible !", titre, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Process.Start("https://github.com/jvin042/minecraft-loup-garou-assistant/releases");
                 }
@@ -417,6 +418,7 @@ namespace Minecraft_Loup_Garou_Assistant
 
                 versionLoupGarou = list[0];
                 lienLoupGarou = list[1];
+                File.Delete(Path.GetTempPath() + "lienLoupGarouRessources");
             }
         }
 
@@ -435,6 +437,7 @@ namespace Minecraft_Loup_Garou_Assistant
 
                 versionProtocolLib = list[0];
                 lienProtocolLib = list[1];
+                File.Delete(Path.GetTempPath() + "lienProtocolLibRessources");
             }
         }
         #endregion
