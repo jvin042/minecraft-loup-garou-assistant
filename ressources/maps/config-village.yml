@@ -63,6 +63,7 @@ role:
   PetiteFille: 1
   LoupGarou: 1
   Corbeau: 1
+  MontreurDOurs: 1
   LoupGarouBlanc: 1
   Voyante: 1
   Assassin: 1
@@ -84,5 +85,7 @@ role:
   ChienLoup: 1
   Pyromane: 1
   Pirate: 1
+  ChasseurDeVampire: 1
+  Vampire: 1
   Pretre: 1
   Sorciere: 1
