@@ -1,5 +1,7 @@
 ![Image description](ressources/Capture.JPG)
 
+[Vidéo de présentation du logiciel Minecraft Loup Garou Assistant !](https://www.youtube.com/watch?v=Ru_DVwe-xSQ)]
+
 [Documentation pour le mode Minecraft Loup Garou de Squeezie.](https://jvin042.github.io/minecraft-loup-garou-wiki)
 
 ## Prérequis
