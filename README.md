@@ -1,6 +1,6 @@
 ![Image description](ressources/Capture.JPG)
 
-Documentation pour le mode Minecraft Loup Garou de Squeezie : [https://jvin042.github.io/minecraft-loup-garou-wiki](https://jvin042.github.io/minecraft-loup-garou-wiki)
+[Documentation pour le mode Minecraft Loup Garou de Squeezie.](https://jvin042.github.io/minecraft-loup-garou-wiki)
 
 ## Prérequis
 
@@ -10,6 +10,6 @@ Documentation pour le mode Minecraft Loup Garou de Squeezie : [https://jvin042.g
 
 ## Utilisation
 
-- Télécharger la dernière version du logiciel disponible : [https://github.com/jvin042/minecraft-loup-garou-assistant/releases](https://github.com/jvin042/minecraft-loup-garou-assistant/releases)
+- Télécharger la dernière version du logiciel disponible [ici](https://github.com/jvin042/minecraft-loup-garou-assistant/releases) !
 
 - Lancer le logiciel.
